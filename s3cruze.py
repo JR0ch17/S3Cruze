@@ -9,7 +9,7 @@ print """
 |____/____/|____||_|    \__,_|/____/|_____|
 
 S3 bucket enumeration and file upload
-Release v1 
+Release v1.0 
 By JR0ch17
 """
 
