@@ -30,7 +30,7 @@ file.close()
 parser = ArgumentParser()
 parser.add_argument("-t", "--target", dest="targetBucket", help="Select a target bucket name (e.g. 'shopify')", metavar="targetBucket", required="True")
 parser.add_argument("-f", "--file", dest="inputFile", help="Select a bucket brute-forcing file (default: bucket-names.txt)", default="bucket-names.txt", metavar="inputFile")
-parser.add_argument("-u", "--upload ", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default="BugBounty-[######].txt", metavar="uploadFile")
+parser.add_argument("-u", "--upload ", dest="uploadFile", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default="BugBounty-[######].txt", metavar="uploadFile")
 
 args = parser.parse_args()
 
