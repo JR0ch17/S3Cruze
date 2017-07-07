@@ -1,5 +1,5 @@
 # S3Cruze
-This tool is based off of the Sandcastle projet from @yasinS. It will scan
+This tool is based off of the Sandcastle projet from @yasinS. It will look for bucket names using a dictionnary and try to upload a file to the identified buckets.
 
 ## AWS-CLI
 - For this tool to work properly, you need to have [AWS-CLI] installed (http://docs.aws.amazon.com/cli/latest/userguide/installing.html). - Once installed, you need to run `aws configure` to configure your AWS Access Keys.
