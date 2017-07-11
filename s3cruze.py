@@ -23,9 +23,9 @@ uploadFile = "BugBounty-%s.txt" %randomNumber
 inputFile = ""
 targetBucket = ""
 
-file = open(uploadFile, 'w+')
-file.write("This is a file upload test for bug bounty purposes")
-file.close()
+#file = open(uploadFile, 'w+')
+#file.write("This is a file upload test for bug bounty purposes")
+#file.close()
 
 parser = ArgumentParser()
 parser.add_argument("-t", "--target", dest="targetBucket", help="Select a target bucket name (e.g. 'shopify')", metavar="targetBucket", required="True")
@@ -38,21 +38,21 @@ with open(args.inputFile, 'r') as f:
     bucketName = [line.strip() for line in f]
     lineCount = len(bucketName)
 
-print "[*] Starting enumeration and file uploading of %s to the '%s' bucket, reading %i lines from '%s'. \n" % (uploadFile, args.targetBucket, lineCount, f.name)
+print "[*] Starting enumeration of the '%s' bucket, reading %i lines from '%s'. \n" % (args.targetBucket, lineCount, f.name)
 
 for name in bucketName:
         r = requests.head("http://%s%s.s3.amazonaws.com" % (args.targetBucket, name))
         if r.status_code != 404:
                 print "\n [+] Checking potential match: %s%s --> %s and file upload test." % (args.targetBucket, name, r.status_code)
                 ls = commands.getoutput("/usr/local/bin/aws s3 ls s3://%s%s" % (args.targetBucket, name))
-                cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
+                #cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                 print ls
                 print "%s \n" % (cp)
         else:
                 sys.stdout.write('')
 
 
-os.remove("%s" % (uploadFile))
+#os.remove("%s" % (uploadFile))
 
 print "\n [*] Enumeration and file upload test of the '%s' bucket is complete." % (args.targetBucket)
 
