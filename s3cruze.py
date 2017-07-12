@@ -49,9 +49,11 @@ for name in bucketName:
                 print ls
 		
 		if args.upload:
-				    print "[+] Uploading file: %s(uploadFile)	
+				    print "[+] Uploading file: %s." % (uploadFile)	
 				    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                 		    print "%s \n" % (cp)
+		else:
+				    sys.stdout.write('')
         else:
                 sys.stdout.write('')
 
