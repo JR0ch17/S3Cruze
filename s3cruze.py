@@ -31,7 +31,6 @@ file.close()
 parser = ArgumentParser()
 parser.add_argument("-t", "--target", dest="targetBucket", help="Select a target bucket name (e.g. 'shopify')", metavar="targetBucket", required="True")
 parser.add_argument("-f", "--file", dest="inputFile", help="Select a bucket brute-forcing file (default: bucket-names.txt)", default="bucket-names.txt", metavar="inputFile")
-#parser.add_argument("-u", "--upload ", dest="uploadFile", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default="BugBounty-[######].txt", metavar="uploadFile")
 parser.add_argument("-u", "--upload", dest="upload", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default=False, action="store_true") 
 
 args = parser.parse_args()
@@ -45,18 +44,19 @@ print "[*] Starting enumeration of the '%s' bucket, reading %i lines from '%s'. 
 for name in bucketName:
         r = requests.head("http://%s%s.s3.amazonaws.com" % (args.targetBucket, name))
         if r.status_code != 404:
-                print "\n [+] Checking potential match: %s%s --> %s and file upload test." % (args.targetBucket, name, r.status_code)
+                print "\n [+] Checking potential match: %s%s --> %s." % (args.targetBucket, name, r.status_code)
                 ls = commands.getoutput("/usr/local/bin/aws s3 ls s3://%s%s" % (args.targetBucket, name))
                 print ls
 		
 		if args.upload:
+				    print "[+] Uploading file: %s(uploadFile)	
 				    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
-                print "%s \n" % (cp)
+                		    print "%s \n" % (cp)
         else:
                 sys.stdout.write('')
 
 
 os.remove("%s" % (uploadFile))
 
-print "\n [*] Enumeration and file upload test of the '%s' bucket is complete." % (args.targetBucket)
+print "\n [*] S3Cruze is now complete on %s." % (args.targetBucket)
 
