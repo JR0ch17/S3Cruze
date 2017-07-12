@@ -22,6 +22,7 @@ randomNumber = randrange(100000, 999999)
 uploadFile = "BugBounty-%s.txt" % randomNumber
 inputFile = ""
 targetBucket = ""
+upload = ""
 
 file = open(uploadFile, 'w+')
 file.write("This is a file upload test for bug bounty purposes")
@@ -46,9 +47,10 @@ for name in bucketName:
         if r.status_code != 404:
                 print "\n [+] Checking potential match: %s%s --> %s and file upload test." % (args.targetBucket, name, r.status_code)
                 ls = commands.getoutput("/usr/local/bin/aws s3 ls s3://%s%s" % (args.targetBucket, name))
-                if args.upload:
-				    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                 print ls
+		
+		if args.upload:
+				    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                 print "%s \n" % (cp)
         else:
                 sys.stdout.write('')
