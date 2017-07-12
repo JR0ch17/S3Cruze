@@ -19,7 +19,7 @@ from argparse import ArgumentParser
 from random import randrange
 
 randomNumber = randrange(100000, 999999)
-uploadFile = "BugBounty-%s.txt" %randomNumber
+uploadFile = "BugBounty-%s.txt" % randomNumber
 inputFile = ""
 targetBucket = ""
 
@@ -30,7 +30,8 @@ file.close()
 parser = ArgumentParser()
 parser.add_argument("-t", "--target", dest="targetBucket", help="Select a target bucket name (e.g. 'shopify')", metavar="targetBucket", required="True")
 parser.add_argument("-f", "--file", dest="inputFile", help="Select a bucket brute-forcing file (default: bucket-names.txt)", default="bucket-names.txt", metavar="inputFile")
-parser.add_argument("-u", "--upload ", dest="uploadFile", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default="BugBounty-[######].txt", metavar="uploadFile")
+#parser.add_argument("-u", "--upload ", dest="uploadFile", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default="BugBounty-[######].txt", metavar="uploadFile")
+parser.add_argument("-u", "--upload", dest="upload", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default=False, action="store_true") 
 
 args = parser.parse_args()
 
@@ -45,7 +46,8 @@ for name in bucketName:
         if r.status_code != 404:
                 print "\n [+] Checking potential match: %s%s --> %s and file upload test." % (args.targetBucket, name, r.status_code)
                 ls = commands.getoutput("/usr/local/bin/aws s3 ls s3://%s%s" % (args.targetBucket, name))
-                cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
+                if args.upload:
+				    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                 print ls
                 print "%s \n" % (cp)
         else:
