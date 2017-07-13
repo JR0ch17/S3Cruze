@@ -57,7 +57,7 @@ for name in bucketName:
                                     cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
                                     print "%s \n" % (cp)
 
-                                    if args.remove:
+                                    if args.delete:
                                             print "[+] Delete file: %s." % (uploadFile)
                                             rm = commands.getoutput("/usr/local/bin/aws s3 rm s3://%s%s/%s" % (args.targetBucket, name, uploadFile))
                                             print "%s \n" % (rm)
