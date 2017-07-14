@@ -14,7 +14,7 @@ By JR0ch17
 """
 
 
-import sys, os, commands, requests, random
+import sys, os, commands, requests
 from argparse import ArgumentParser
 from random import randrange
 
