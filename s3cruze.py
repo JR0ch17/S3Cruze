@@ -9,12 +9,12 @@ print """
 |____/____/|____||_|    \__,_|/____/|_____|
 
 S3 bucket enumeration and file upload
-Release v1.0
+Release v1.1
 By JR0ch17
 """
 
 
-import sys, os, commands, requests
+import sys, os, commands, requests, random
 from argparse import ArgumentParser
 from random import randrange
 
@@ -25,6 +25,13 @@ targetBucket = ""
 upload = ""
 delete = ""
 
+def wordMixing(target, word):
+    wordList = ["{0}{1}".format(target, word)]
+    wordList.append("{0}-{1}".format(target, word))
+    wordList.append("{1}-{0}".format(target, word))
+    wordList.append("{1}{0}".format(target, word))
+    return wordList
+
 file = open(uploadFile, 'w+')
 file.write("This is a file upload test for bug bounty purposes")
 file.close()
@@ -34,32 +41,29 @@ parser.add_argument("-t", "--target", dest="targetBucket", help="Select a target
 parser.add_argument("-f", "--file", dest="inputFile", help="Select a bucket brute-forcing file (default: bucket-names.txt)", default="bucket-names.txt", metavar="inputFile")
 parser.add_argument("-u", "--upload", dest="upload", help="File to upload will be automatically generated (e.g. 'BugBounty-[######].txt')", default=False, action="store_true")
 parser.add_argument("-d", "--delete", dest="delete", help="Delete file from bucket after uploading it", default=False, action="store_true")
-
 args = parser.parse_args()
 
 with open(args.inputFile, 'r') as f:
     bucketName = [line.strip() for line in f]
     lineCount = len(bucketName)
 
-
-
-print "[*] Starting enumeration of '%s' buckets, reading %i lines from '%s'. \n" % (args.targetBucket, lineCount, f.name)
-
 for name in bucketName:
-        r = requests.head("http://%s%s.s3.amazonaws.com" % (args.targetBucket, name))
+    wordList = wordMixing(args.targetBucket, name)
+    for word in wordList:
+        r = requests.head("http://%s.s3.amazonaws.com" % (word))
         if r.status_code != 404:
-                print "\n [+] Checking potential match: %s%s --> %s." % (args.targetBucket, name, r.status_code)
-                ls = commands.getoutput("/usr/local/bin/aws s3 ls s3://%s%s" % (args.targetBucket, name))
+                print "\n [+] Checking potential match: %s --> %s." % (word, r.status_code)
+                ls = commands.getoutput("/usr/bin/aws s3 ls s3://%s" % (word))
                 print ls
 
                 if args.upload:
                                     print "[+] Uploading file: %s." % (uploadFile)
-                                    cp = commands.getoutput("/usr/local/bin/aws s3 cp %s s3://%s%s" % (uploadFile, args.targetBucket, name))
+                                    cp = commands.getoutput("/usr/bin/aws s3 cp %s s3://%s" % (uploadFile, word))
                                     print "%s \n" % (cp)
 
                                     if args.delete:
                                             print "[+] Delete file: %s." % (uploadFile)
-                                            rm = commands.getoutput("/usr/local/bin/aws s3 rm s3://%s%s/%s" % (args.targetBucket, name, uploadFile))
+                                            rm = commands.getoutput("/usr/bin/aws s3 rm s3://%s/%s" % (word, uploadFile))
                                             print "%s \n" % (rm)
                                     else:
                                             sys.stdout.write('')
