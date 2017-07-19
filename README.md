@@ -1,5 +1,5 @@
 # S3Cruze
-This tool is based off of the Sandcastle projet from @yasinS. It will look for bucket names using a dictionnary file and try to upload a file to the identified buckets.
+This tool is based off of the Sandcastle projet from @yasinS. It will look for bucket names using a word list and it can also try to upload a file to the identified buckets.
 
 
 
@@ -13,7 +13,7 @@ This tool is based off of the Sandcastle projet from @yasinS. It will look for b
 2. Run s3cruze.py with your target name. You can also specify your own dictionnary file if you'd like and you can also select if you want to try to upload a file or not. The default behavior will only enumerate buckets.
 
 ```
-usage: s3cruze.py [-h] -t targetBucket [-f inputFile] [-u]
+usage: s3cruze.py [-h] -t targetBucket [-f inputFile] [-u] [-d]
 
 optional arguments:
   -h, --help            show this help message and exit
