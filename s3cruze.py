@@ -8,7 +8,7 @@ print """
  ___) ___) | |__ | |   | |_| | / /_ | ____|
 |____/____/|____||_|    \__,_|/____/|_____|
 
-Release v1.3
+Release v1.2
 By JR0ch17
 """
 
@@ -23,6 +23,8 @@ inputFile = ""
 targetBucket = ""
 upload = ""
 delete = ""
+acl = ""
+policy = ""
 
 def wordMixing(target, word):
     wordList = ["{0}{1}".format(target, word)]
@@ -45,6 +47,7 @@ parser.add_argument("-p", "--policy", dest="policy", help="View bucket policy", 
 parser.add_argument("-c", "--cors", dest="cors", help="View bucket CORS configuration", default=False, action="store_true")
 parser.add_argument("-r", "--replication", dest="replication", help="View bucket replication configuration", default=False, action="store_true")
 parser.add_argument("-w", "--website", dest="website", help="View bucket website configuration", default=False, action="store_true")
+parser.add_argument("--all", dest="all", help="View all bucket configuration", default=False, action="store_true")
 args = parser.parse_args()
 
 with open(args.inputFile, 'r') as f:
@@ -59,6 +62,19 @@ for name in bucketName:
                 print "\n [+] Checking potential match: %s --> %s." % (word, r.status_code)
                 ls = commands.getoutput("/usr/bin/aws s3 ls s3://%s" % (word))
                 print ls
+
+                if args.all:
+                        print "[+] Checking %s bucket configuration." % (word)
+                        acl = commands.getoutput("/usr/bin/aws s3api get-bucket-acl --bucket %s" % (word))
+                        policy = commands.getoutput("/usr/bin/aws s3api get-bucket-policy --bucket %s" % (word))
+                        cors = commands.getoutput("/usr/bin/aws s3api get-bucket-cors --bucket %s" % (word))
+                        replication = commands.getoutput("/usr/bin/aws s3api get-bucket-replication --bucket %s" % (word))
+                        website = commands.getoutput("/usr/bin/aws s3api get-bucket-website --bucket %s" % (word))
+                        print "%s %s %s %s %s"% (acl, policy, cors, replication, website)
+
+                else:
+                        sys.stdout.write('')
+
 
                 if args.acl:
                         print "[+] Checking %s bucket ACL." % (word)
