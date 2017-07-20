@@ -31,6 +31,7 @@ optional arguments:
   -c, --cors            View bucket CORS configuration
   -r, --replication     View bucket replication configuration
   -w, --website         View bucket website configuration
+  --all                 View all bucket configuration
   
 ```
 
