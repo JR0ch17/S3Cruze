@@ -7,5 +7,5 @@ All notable changes to S3Cruze will be documented in this file.
 ## 1.1 – 2017-07-13
 - Added a delete feature where it deletes the test file that was uploaded
 
-## 1.0 – 2017-07-20
+## 1.2 – 2017-07-20
 - Added features to view a bucket's ACL, policy, CORS configuration, replication configuration and website configuration
