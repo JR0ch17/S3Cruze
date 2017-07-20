@@ -37,4 +37,4 @@ optional arguments:
 
 
 ## Contributions
-Please feel free to create pull requests, it would be greatly appreciated.
+I'm just beginning to code in Python so if you feel it could work better by coding it in a certain way, please feel free to create pull requests, it would be greatly appreciated. Honestly, please do.
