@@ -86,7 +86,7 @@ for name in bucketName:
                 if args.policy:
                         print "[+] Checking %s bucket policy." % (word)
                         policy = commands.getoutput("/usr/bin/aws s3api get-bucket-policy --bucket %s" % (word))
-                        print "%s \n" % (acl)
+                        print "%s \n" % (policy)
 
                 else:
                         sys.stdout.write('')
@@ -94,7 +94,7 @@ for name in bucketName:
                 if args.cors:
                         print "[+] Checking %s bucket CORS configuration." % (word)
                         cors = commands.getoutput("/usr/bin/aws s3api get-bucket-cors --bucket %s" % (word))
-                        print "%s \n" % (acl)
+                        print "%s \n" % (cors)
 
                 else:
                         sys.stdout.write('')
