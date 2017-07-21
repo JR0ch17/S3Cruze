@@ -1,5 +1,5 @@
 # S3Cruze
-This tool is based off of the Sandcastle projet from @yasinS. Using a word list, it will enumerate buckets and list files (if allowed). You can also choose to try to upload a test file, or attempt to view a bucket's ACL, policy, CORS configuration, replication configuration and its website configuration. 
+This tool is based off of the Sandcastle projet from @yasinS. Using a word list, it will enumerate buckets and list files (if allowed). You can also choose to try to upload a test file, or attempt to view a bucket's ACL, policy, CORS configuration, replication configuration, website configuration and bucket location. You also have the option to check a single bucket that you have already found elsewhere. 
 
 
 
@@ -14,7 +14,7 @@ This tool is based off of the Sandcastle projet from @yasinS. Using a word list,
 
 ```
 usage: s3cruze2.py [-h] -t targetBucket [-f inputFile] [-u] [-d] [-a] [-p]
-                   [-c] [-r] [-w]
+                   [-c] [-r] [-w] [-l] [--all] (-b | -s)
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -31,7 +31,12 @@ optional arguments:
   -c, --cors            View bucket CORS configuration
   -r, --replication     View bucket replication configuration
   -w, --website         View bucket website configuration
+  -l, --location        View bucket location
   --all                 View all bucket configuration
+  -b, --bruteforce      Bruteforce buckets names. By default it will try to
+                        list files from the buckets.
+  -s, --single          Check a single bucket only
+
   
 ```
 
