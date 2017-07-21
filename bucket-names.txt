@@ -1,6 +1,7 @@
 admin
 administration
 administrator
+ads
 alpha
 android
 angular
@@ -33,6 +34,7 @@ bugs
 bugzilla
 build
 bulletins
+cdn
 cloud
 cloudtrail
 club
@@ -54,6 +56,8 @@ contracts
 corporate
 couk
 data
+data-export
+data-exports
 dataset
 datasets
 de
@@ -65,13 +69,17 @@ devel
 developer
 developers
 development
+dev-files
 devops
 documents
 elasticsearch
 engineer
 engineering
 es
+export
+exports
 files
+files-attachments
 fileserv
 fileserver
 filestore
@@ -91,7 +99,9 @@ intranet
 invalid
 investor
 investors
+io
 ios
+iterable
 kafka
 kbfiles
 kerberos
@@ -115,7 +125,11 @@ mediauploads
 member
 members
 mercurial
+mobile
+mobile-staging
+net
 onboarding
+opensource
 operations
 opinion
 ops
@@ -127,6 +141,7 @@ pics
 presentations
 prod
 production
+production3
 products
 profiles
 project
@@ -137,8 +152,13 @@ research
 reseller
 reserved
 rest
+s3
+s3-attachemnts
 s3connectortest
+sales-app
 share
+signature
+smoke
 splunk
 spreadsheets
 stage
@@ -147,6 +167,8 @@ static
 statistics
 stats
 subversion
+support
+support-attachments
 supportdocs
 supportmedia
 supportuploads
@@ -156,7 +178,9 @@ terraformbinaries
 tmp
 training
 ui
+ui-staging
 uploads
+user-files
 users
 ux
 vanitydev
@@ -168,8 +192,10 @@ webassets
 web-assets
 webdata
 web-data
+web-gstatic
 website
 websiteassets
+website-assets
 webstatic
 web-static
 windows
