@@ -38,4 +38,4 @@ optional arguments:
 
 
 ## Contributions
-I'm just beginning to code in Python so if you feel it could work better by coding it in a certain way, please feel free to create pull requests, it would be greatly appreciated. Honestly, please do.
+I'm just beginning to code in Python so if you feel it could work better by coding it in a certain way, please feel free to create pull requests, it would be greatly appreciated. Honestly, please do. I can also be reached via Twitter @JR0ch17.
