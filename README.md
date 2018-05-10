@@ -4,7 +4,7 @@ This tool is based off of the Sandcastle projet from @yasinS. Using a word list,
 
 
 ## AWS-CLI
-- For this tool to work properly, you need to have [AWS-CLI] installed (http://docs.aws.amazon.com/cli/latest/userguide/installing.html). - Once installed, you need to run `aws configure` to configure your AWS Access Keys.
+- For this tool to work properly, you need to have **AWS-CLI** installed (http://docs.aws.amazon.com/cli/latest/userguide/installing.html). - Once installed, you need to run `$ aws configure` to configure your AWS Access Keys.
 
 
 
@@ -13,7 +13,7 @@ This tool is based off of the Sandcastle projet from @yasinS. Using a word list,
 2. Run s3cruze.py with your target name. You can also specify your own dictionnary file if you'd like and you can also select if you want to try to upload a file or not. The default behavior will only enumerate buckets.
 
 ```
-usage: s3cruze2.py [-h] -t targetBucket [-f inputFile] [-u] [-d] [-a] [-p]
+usage: s3cruze.py [-h] -t targetBucket [-f inputFile] [-u] [-d] [-a] [-p]
                    [-c] [-r] [-w] [-l] [--all] (-b | -s)
 
 optional arguments:
