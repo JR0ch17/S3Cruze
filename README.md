@@ -1,4 +1,6 @@
 # S3Cruze
+[![Python |2.7](https://img.shields.io/badge/python-2.7-yellow.svg)](https://www.python.org/) [![Twitter](https://img.shields.io/badge/twitter-@JR0ch17-blue.svg)](https://twitter.com/JR0ch17)
+
 This tool is based off of the Sandcastle projet from @yasinS. Using a word list, it will enumerate buckets and list files (if allowed). You can also choose to try to upload a test file, or attempt to view a bucket's ACL, policy, CORS configuration, replication configuration, website configuration and bucket location. You also have the option to check a single bucket that you have already found elsewhere. 
 
 
